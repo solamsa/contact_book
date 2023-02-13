@@ -1,24 +1,36 @@
 import sqlite3
 
-# con = sqlite3.connect("tutorial.db")
-# # cur = con.cursor()
-# # res = cur.execute("SELECT name FROM sqlite_master")
-# print(res.fetchone())
+def connection():
+    """function to connect to the database
+
+    Returns:
+        sqlite: connection to the database
+    """
+    con = sqlite3.connect("contacts_database.db")
+    return con
+
+def curs():
+    """
+        database curser
+    Returns:
+        sql: returns database curser
+    """
+    cur = connection().cursor()
+    return cur
 
 def details(name,number,email):
-    con = sqlite3.connect("contacts_database.db")
-    cur = con.cursor()
-    cur.execute(f"""
+    
+    curs().execute(f"""
     INSERT INTO contacts VALUES
         ('{name}', '{number}', '{email}')
 """)
-    con.commit()
+    connection().commit()
+
 def view_details():
-    con = sqlite3.connect("contacts_database.db")
-    cur = con.cursor()
-    res = cur.execute("SELECT name,number FROM contacts")
+    res = curs().execute("SELECT name,number FROM contacts")
     a = res.fetchall()
     return a
+
 if __name__ == "__main__":
     # name = input("Enter Name: ")
     # number = input("Input Number: ")
