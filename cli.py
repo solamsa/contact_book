@@ -5,15 +5,15 @@ import templates as tm
 global_parser = argparse.ArgumentParser(prog="cli")
 subparsers = global_parser.add_subparsers(title="subcommands", help="contact book commands")
 
-add_parser = subparsers.add_parser("add", help = "Add contact")
+add_parser = subparsers.add_parser("add", help = "Add <name phone email>")
 add_parser.add_argument(**tm.add_template())
 add_parser.set_defaults(func=mc.insert_values)
 
-view_parser = subparsers.add_parser("view", help = "view contacts")
+view_parser = subparsers.add_parser("view", help = "view <all>")
 view_parser.add_argument(**tm.view_template())
 view_parser.set_defaults(func=mc.view_contacts)
 
-del_parser = subparsers.add_parser("delete", help = "delete contact")
+del_parser = subparsers.add_parser("delete", help = "delete <key>")
 del_parser.add_argument(**tm.del_template())
 del_parser.set_defaults(func=mc.delete)
 
