@@ -35,7 +35,7 @@ def view_contacts(arg):
 
 def delete(ID):
     cur.execute(f"DELETE FROM CONTACTS WHERE ID ='{ID}'")
-
+    con.commit()
      
 if __name__ != "__main__" :
     con = sqlite3.connect("contact_book.db")
