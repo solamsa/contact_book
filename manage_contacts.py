@@ -1,39 +1,28 @@
 import sqlite3
 
-def connection():
-    """function to connect to the database
+def create_table():
+    cur.execute("CREATE TABLE contacts(name,number,email)")
 
-    Returns:
-        sqlite: connection to the database
-    """
-    con = sqlite3.connect("contacts_database.db")
-    return con
-
-def curs():
-    """
-        database curser
-    Returns:
-        sql: returns database curser
-    """
-    cur = connection().cursor()
-    return cur
-
-def details(name,number,email):
-    
-    curs().execute(f"""
-    INSERT INTO contacts VALUES
-        ('{name}', '{number}', '{email}')
-""")
-    connection().commit()
-
-def view_details():
-    res = curs().execute("SELECT name,number FROM contacts")
-    a = res.fetchall()
-    return a
-
+def insert_values(name,number,email):
+    cur.execute(f"""
+        INSERT INTO contacts VALUES
+            ('{name}', '{number}' , '{email}')
+    """)
+    con.commit()
+     
+def view_values():
+    res = cur.execute("SELECT email FROM contacts")
+    print(res.fetchall())
+     
 if __name__ == "__main__":
-    # name = input("Enter Name: ")
-    # number = input("Input Number: ")
-    # email = input("Input email")
-    # details(name,number,email)
-    print(view_details())
+    con = sqlite3.connect("contact_book.db")
+    cur = con.cursor()
+    try:
+        create_table()
+    except sqlite3.OperationalError:
+        print("contact table exists")
+
+    res = cur.execute("SELECT name FROM sqlite_master")
+    print(res.fetchone())
+    insert_values("solam","0606482037","s@gmail.com")
+    view_values()
