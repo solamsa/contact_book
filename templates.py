@@ -22,10 +22,10 @@ def view_template():
 def del_template():
     del_t = {
         "dest": "details",
-        "type": str,
+        "type": int,
         "nargs": 1,
-        "metavar": "all",
-        "help": "str value",
+        "metavar": "Key",
+        "help": "INT value",
     }
     return del_t
 
