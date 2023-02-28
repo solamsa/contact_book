@@ -17,5 +17,10 @@ del_parser = subparsers.add_parser("delete", help = "delete <key>")
 del_parser.add_argument(**tm.del_template())
 del_parser.set_defaults(func=mc.delete)
 
+update_parser = subparsers.add_parser("update", help= "update <id field update_content>")
+update_parser.add_argument(**tm.update_template())
+update_parser.set_defaults(func=mc.update)
+
+
 args = global_parser.parse_args()
 args.func(*args.details)

@@ -29,3 +29,12 @@ def del_template():
     }
     return del_t
 
+def update_template():
+    update_t = {
+        "dest": "details",
+        "type": str,
+        "nargs": 3,
+        "metavar": "Key field new_record",
+        "help": "tuple values",
+    }
+    return update_t
