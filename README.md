@@ -8,3 +8,6 @@ Save and find contacts using command line and databases
 # help:
     python3 cli.py -h (to view contact book help in detail)
     python3 cli.py subcommand -h (to view subcommand help in detail)
+
+# packages:
+    install rich using pip: pip install rich
